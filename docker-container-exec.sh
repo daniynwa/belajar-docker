@@ -5,7 +5,7 @@ Contoh : docker container exec -i -t containerid/namacontainer /bin/bash
 -i adalah argument interaktif, untuk menjaga input tetap aktif
 -t adalah argument alokasi pseudo-TTY (terminal akses)
 -bin/bash adalah contoh kode program yang terdapat didalam container
-
+```bash
 [root@corp ~]# docker container exec -i -t credis /bin/bash
 root@bc0dbb5776b2:/data# ls
 root@bc0dbb5776b2:/data# ls /
@@ -17,3 +17,4 @@ OK
 127.0.0.1:6379> get DAY
 "Dani Afriyadi Yusuf"
 127.0.0.1:6379>
+```
