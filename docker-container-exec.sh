@@ -16,5 +16,7 @@ root@bc0dbb5776b2:/data# redis-cli
 OK
 127.0.0.1:6379> get DAY
 "Dani Afriyadi Yusuf"
-127.0.0.1:6379>
+127.0.0.1:6379>exit
+root@bc0dbb5776b2:/data#exit
+[root@corp ~]#
 ```
