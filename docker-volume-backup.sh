@@ -115,4 +115,67 @@ total 307580
 -rw-r--r--. 1 root root 314961920 Sep  8 14:27 mongovolume.tar.gz
 [root@corp backup-volume]#
 ```
- 
+
+"Cara yang lebih singkat dan sederhana untuk melakukan backup seperti diata"
+
+contoh : docker image pull ubuntu:latest
+  docker container run --rm --name ubuntu --mount "type=bind,source=/home/dani/backup-volume,destination=/backup" --mount "type=volume,source=mongovolume,destination=/data" ubuntu:latest tar cvf /backup/mongovolume1.tar.gz /data
+
+```bash
+[root@corp ~]# docker container run --rm --name ubuntu --mount "type=bind,source=/home/dani/backup-volume,destination=/backup" --mount "type=volume,source=mongovolume,destination=/data" ubuntu:latest tar cvf /backup/mongovolume1.tar.gz /data
+
+/data/
+/data/mongod.lock
+/data/journal/
+/data/journal/WiredTigerLog.0000000002
+/data/journal/WiredTigerPreplog.0000000001
+/data/journal/WiredTigerPreplog.0000000002
+/data/WiredTiger.lock
+/data/WiredTiger
+/data/WiredTiger.wt
+/data/WiredTiger.turtle
+/data/WiredTigerHS.wt
+/data/sizeStorer.wt
+/data/_mdb_catalog.wt
+/data/storage.bson
+/data/collection-0-4216942743969268707.wt
+/data/index-1-4216942743969268707.wt
+/data/collection-2-4216942743969268707.wt
+/data/index-3-4216942743969268707.wt
+/data/collection-4-4216942743969268707.wt
+/data/index-5-4216942743969268707.wt
+/data/index-6-4216942743969268707.wt
+/data/diagnostic.data/
+/data/diagnostic.data/metrics.2023-09-08T06-58-11Z-00000
+/data/diagnostic.data/metrics.2023-09-08T06-58-15Z-00000
+/data/.mongodb/
+/data/.mongodb/mongosh/
+/data/.mongodb/mongosh/64fac6030e246bb71b22db38_log
+/data/.mongodb/mongosh/config
+/data/.mongodb/mongosh/mongosh_repl_history
+/data/.mongodb/mongosh/64fac603e4e3ff4b98bcbe45_log
+/data/.mongodb/mongosh/snippets/
+/data/.mongodb/mongosh/snippets/package.json
+/data/.mongodb/mongosh/am-64fac6030e246bb71b22db37.json
+/data/collection-7-4216942743969268707.wt
+/data/index-8-4216942743969268707.wt
+/data/index-9-4216942743969268707.wt
+"PROSES BACKUP SELESAI"
+
+"TERLIHAT SUDAH MASUK SISTEM HOST DATA (mongovolume1.tar.gz)"
+[root@corp ~]# cd /home/dani/backup-volume/
+[root@corp backup-volume]# ls
+mongovolume1.tar.gz  mongovolume.tar.gz
+
+"DOCKER CONTAINER UBUNTU YANG KITA RUN SUDAH OTOMATIS TERHAPUS"
+[root@corp backup-volume]# cd
+[root@corp ~]# docker container ls -a
+CONTAINER ID   IMAGE                                          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+3f8b819e8770   mongo:latest                                   "docker-entrypoint.s…"   50 minutes ago   Exited (0) 49 minutes ago             daymongodb
+73f449d96c1c   nginx:latest                                   "/docker-entrypoint.…"   21 hours ago     Exited (0) 21 hours ago               smallnginx
+01fa23ca0bcb   mongo:latest                                   "docker-entrypoint.s…"   22 hours ago     Exited (0) 21 hours ago               corpmongodb
+7fc942d12745   opensecurity/mobile-security-framework-mobsf   "/home/mobsf/Mobile-…"   22 hours ago     Exited (0) 21 hours ago               dani-mobsf-1
+3f2ad9791abf   nginx:latest                                   "/docker-entrypoint.…"   24 hours ago     Exited (0) 21 hours ago               corpnginx
+bc0dbb5776b2   redis:latest                                   "docker-entrypoint.s…"   28 hours ago     Exited (0) 21 hours ago               credis
+[root@corp ~]#
+```
